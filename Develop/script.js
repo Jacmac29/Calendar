@@ -6,18 +6,23 @@ document.getElementById("currentDay").textContent = currentDate;
 // Get the current hour (in 24-hour format)
 const currentHour = dayjs().hour();
 
-// Loop through each time block
-document.querySelectorAll(".time-block").forEach((timeBlock) => {
-  const blockHour = parseInt(timeBlock.id.split("-")[1]);
 
-  if (blockHour < currentHour) {
+
+
+const currentTime = dayjs().hour();
+
+document.querySelectorAll(".time-block").forEach((timeBlock) => {
+  const timeBlockHour = parseInt(timeBlock.id.split("-")[1]);
+  
+  if (timeBlockHour < currentTime) {
     timeBlock.classList.add("past");
-  } else if (blockHour == currentHour) {
+  } else if (timeBlockHour === currentTime) {
     timeBlock.classList.add("present");
   } else {
     timeBlock.classList.add("future");
   }
 });
+
 // Add event listeners to the save buttons
 document.querySelectorAll(".saveBtn").forEach((button) => {
   button.addEventListener("click", function () {
